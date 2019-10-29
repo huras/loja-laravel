@@ -15,9 +15,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/produtos', 'ProdutosController@index');
-Route::get('/produtos/add', 'ProdutosController@add');
-Route::post('/produtos/create', 'ProdutosController@create');
-Route::get('/produtos/edit/{id}', 'ProdutosController@edit');
-Route::post('/produtos/update/{id}', 'ProdutosController@update');
-Route::get('/produtos/delete/{id}', 'ProdutosController@destroy');
+Route::prefix('produtos')->group(function () {
+    Route::get('/', 'ProdutosController@index');
+    Route::get('/add', 'ProdutosController@add');
+    Route::post('/create', 'ProdutosController@create');
+    Route::get('/edit/{id}', 'ProdutosController@edit');
+    Route::post('/update/{id}', 'ProdutosController@update');
+    Route::get('/delete/{id}', 'ProdutosController@destroy');
+});
